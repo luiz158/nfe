@@ -1,0 +1,4 @@
+Nota Fiscal Eletrônica
+======================
+
+This is soon to be a NFe implementation plus adapters designed to make communicating with Fazenda easier. This is a pet-project and will soon be merged to caelum-stella, hopefully.
