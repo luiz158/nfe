@@ -2,3 +2,38 @@ Nota Fiscal Eletrônica
 ======================
 
 This is soon to be a NFe implementation plus adapters designed to make communicating with Fazenda easier. This is a pet-project and will soon be merged to caelum-stella, hopefully.
+
+
+Para gerar os webservices, o comando eh o seguinte
+
+wsimport -s src -d bin -p br.com.caelum.nfe.ws.SIGLA_DO_ESTADO -XadditionalHeaders -extension wsdl/SIGLA_DO_ESTADO/ARQUIVO_WSDL
+
+para gerar as classes baseadas nos xsds:
+
+xjc PATH_PARA_ARQUIVO_XSD -d src -p br.com.caelum.nfe.xsd.schema.generated
+
+PROBLEMAS ATUAIS
+
+Ler o certificado digital no Mac/ linux não é algo trivial. O código que tá ai ta rolando no windows, pra mac e linux tem q dar um jeito ainda.
+
+O xml que estamos gerando é o seguinte:
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nfeDadosMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2" xmlns:ns2="http://www.portalfiscal.inf.br/nfe">
+    <ns2:consStatServ versao="2.0">
+        <ns2:tpAmb>2</ns2:tpAmb>
+        <ns2:cUF>35</ns2:cUF>
+        <ns2:xServ>STATUS</ns2:xServ>
+    </ns2:consStatServ>
+</nfeDadosMsg>
+
+Ta dando pau na hora de enviar, de acordo com a documentação, acredito que o xml certo seria:
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nfeDadosMsg xmlns="http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2">
+    <consStatServ versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+        <tpAmb>2</tpAmb>
+        <cUF>35</cUF>
+        <xServ>STATUS</xServ>
+    </consStatServ>
+</nfeDadosMsg>
