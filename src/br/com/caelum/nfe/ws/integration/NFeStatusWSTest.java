@@ -48,18 +48,23 @@ public class NFeStatusWSTest {
 	private static String senhaDoCertificado = "we#c$a";
 	private static String arquivoCacertsGeradoTodosOsEstados = "NFeCacerts";
 	private static String alias = "le-3a3c8936-b792-42f5-af7d-2b398bd7ce50";
+//	private static String alias = "neuron tecnologia em informatica ltda:09661762000103";
+//	private static String alias = "neuron tecnologia em informatica ltda:09661762000103 1";
+//	private static String alias = "neuron tecnologia em informatica ltda:09661762000103 2";
 
 	public static void main(String[] args) {
 		try {
 
-			// KeyStore ks = KeyStore.getInstance("KeychainStore", "Apple");
-
-			//obtém o keystore com os certificados
+//			//obtém o keystore com os certificados
+//			 KeyStore ks = KeyStore.getInstance("KeychainStore", "Apple");
+//			 ks.load(null);
+//
 			KeyStore ks = getLocalKeyStore();
+//
 			X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
 			PrivateKey privateKey = (PrivateKey) ks.getKey(alias, senhaDoCertificado.toCharArray());
-
-			//habilita o ssl para os webservices
+//
+//			//habilita o ssl para os webservices
 			enableSSLForWS(certificate, privateKey);
 
 			//======================================================================================
@@ -92,9 +97,9 @@ public class NFeStatusWSTest {
 			status.setVersao("2.00");
 			status.setXServ("STATUS");
 
-//			String xml = getXMLSniptlet(status);
-//			System.out.println(xml);
-//			dados.getContent().add(xml);
+			String xml = getXMLSniptlet(status);
+			System.out.println(xml);
+//			dados.getContent().add(new JAXBElement<String>(new QName(""),String.class,xml));
 
 			//adicionando o conteúdo no obj de dados do ws
 			dados.getContent().add(objectFactoryXSD.createConsStatServ(status));
@@ -103,10 +108,10 @@ public class NFeStatusWSTest {
 			System.out.println("REQUEST==========>");
 			printXML(dados);
 
-			//chamando o webservice e pegando o resultado
+//			//chamando o webservice e pegando o resultado
 			NfeStatusServicoNF2Result result = consulta.nfeStatusServicoNF2(dados, holderCab);
-
-			//imprimindo o resultado...
+//
+//			//imprimindo o resultado...
 			System.out.println("RESPONSE==========>");
 			printXML(result);
 
@@ -124,7 +129,7 @@ public class NFeStatusWSTest {
 
 		 ByteArrayOutputStream os = new ByteArrayOutputStream();
 		 JAXBElement<TConsStatServ> bla = new JAXBElement<TConsStatServ>(new QName("http://www.portalfiscal.inf.br/nfe", "consStatServ"), TConsStatServ.class, (TConsStatServ) dados);
-		 
+
 		 marshaller.marshal(bla, os);
 
 		 return os.toString().trim();

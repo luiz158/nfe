@@ -32,7 +32,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ConsStatServ_QNAME = new QName("http://www.portalfiscal.inf.br/nfe", "consStatServ");
+    private final static QName _ConsStatServ_QNAME = new QName(null, "consStatServ");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.caelum.schema.generated

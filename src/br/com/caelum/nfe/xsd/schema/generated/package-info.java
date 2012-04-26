@@ -5,8 +5,8 @@
 // Generated on: 2012.04.10 at 02:12:20 PM BRT 
 //
 
-@XmlSchema(namespace = "http://www.portalfiscal.inf.br/nfe", 
-	elementFormDefault = XmlNsForm.QUALIFIED)
+//@XmlSchema(namespace = "http://www.portalfiscal.inf.br/nfe", 
+//	elementFormDefault = XmlNsForm.QUALIFIED)
 package br.com.caelum.nfe.xsd.schema.generated;
 
 import javax.xml.bind.annotation.XmlNsForm;
